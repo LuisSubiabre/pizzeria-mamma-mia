@@ -14,8 +14,8 @@ const CardPizza = ({ name, price, image, ingredients }) => {
 
 
                 <div className="d-flex justify-content-around py-2">
-                    <Button variant="outline-dark">Ver más</Button>
-                    <Button variant="warning">Añadir 🛒</Button>
+                    <Button variant="outline-success">Ver más</Button>
+                    <Button variant="success">Añadir 🛒</Button>
                 </div>
             </div>
         </div>

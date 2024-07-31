@@ -2,7 +2,7 @@ import CardPizza from "./CardPizza";
 import { Header } from "./Header";
 import { Row, Col, Container } from "react-bootstrap";
 
-export const Home = () => {
+const Home = () => {
     return (
         <>
             <Header />
@@ -39,3 +39,4 @@ export const Home = () => {
         </>
     );
 }
+export default Home;

@@ -8,8 +8,8 @@ export const Header = () => {
                 <div className="mask"> {/* Agrega una máscara para oscurecer el fondo */}
                     <div className="d-flex justify-content-center align-items-center h-100">
                         <div className="text-white" style={{ filter: 'none' }}> {/* Fondo opaco */}
-                            <h1 className="mb-3" >¡Pizzería Mamma Mia!</h1>
-                            <h4 className="mb-3">¡Tenemos las mejores pizzas que podrás encontrar!</h4>
+                            <h1 className="mb-3" >¡Pizzas de Luugi!</h1>
+                            <h4 className="mb-3">¡El verdadero sabor de Italia!</h4>
                             <a data-mdb-ripple-init className="btn btn-outline-light btn-lg" href="#!" role="button">Mira nuestra carta</a>
                         </div>
                     </div>
