@@ -1,4 +1,7 @@
-
+import React, { useState, useEffect } from 'react';
+import { Badge, Button, Col, Row } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 export const MyNavbar = () => {
     const total = 25000;
     const token = true;
@@ -10,8 +13,24 @@ export const MyNavbar = () => {
         minimumFractionDigits: 0,
     });
 
+    // Cargar el tema guardado en localStorage o usar el tema claro por defecto
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        const savedTheme = localStorage.getItem('theme');
+        return savedTheme ? savedTheme === 'dark' : false;
+    });
+
+    useEffect(() => {
+        document.documentElement.setAttribute('data-bs-theme', isDarkMode ? 'dark' : 'light');
+    }, [isDarkMode]);
+
+    const handleThemeChange = (theme) => {
+        const isDark = theme === 'oscuro';
+        setIsDarkMode(isDark);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light'); // Guardar en localStorage
+    };
+
     return (
-        <nav className="navbar navbar-expand-lg bg-light">
+        <nav className="navbar navbar-expand-lg">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">Pizzería Mamma Mia!</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,14 +49,18 @@ export const MyNavbar = () => {
                         <li className="nav-item">
                             <a className="nav-link" href="#"> {token ? '🔐 Logout' : '🔐 Login'}</a>
                         </li>
+                        <li>
+
+                        </li>
 
                     </ul>
 
                 </div>
                 <div className="text-end">
-                    <a className="nav-link" href="#">🛒 Total: {totalFormateado}</a>
+                    <Button variant="primary" style={{ margin: '0 5px' }}><a className="nav-link" href="#">🛒 Total: {totalFormateado}</a></Button>
+                    {/* <Button variant="secondary" style={{ margin: '0 5px' }} onClick={() => handleThemeChange(isDarkMode ? 'claro' : 'oscuro')}><a className="nav-link" href="#">  <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} /> </a></Button> */}
                 </div>
             </div>
-        </nav>
+        </nav >
     );
 };

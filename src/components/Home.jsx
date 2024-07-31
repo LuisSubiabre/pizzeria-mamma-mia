@@ -1,13 +1,13 @@
 import CardPizza from "./CardPizza";
 import { Header } from "./Header";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 
 export const Home = () => {
     return (
         <>
             <Header />
-            <h1>Home</h1>
-            <div className="container">
+
+            <Container className="my-4">
                 <Row className="mx-2">
                     <Col md={4}>
                         <CardPizza
@@ -34,7 +34,7 @@ export const Home = () => {
                         />
                     </Col>
                 </Row>
-            </div>
+            </Container>
 
         </>
     );
