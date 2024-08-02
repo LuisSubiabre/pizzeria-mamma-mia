@@ -1,7 +1,10 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { formatNumber } from '../scripts.js';
+
 const CardPizza = ({ name, price, image, ingredients }) => {
-    console.log(name, price, image, ingredients);
+    //console.log(name, price, image, ingredients);
+
     return (
         <div className="card">
             <img src={image} className="card-img-top" alt={name} />
@@ -10,7 +13,7 @@ const CardPizza = ({ name, price, image, ingredients }) => {
                 <hr />
                 <p className="card-text">🍕<strong>Ingredientes: </strong>{ingredients.join(", ")}</p>
                 <hr />
-                <h4 className='text-center'>Precio: ${price}</h4>
+                <h4 className='text-center'>Precio: {formatNumber(price)}</h4>
 
 
                 <div className="d-flex justify-content-around py-2">

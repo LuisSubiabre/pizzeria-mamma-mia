@@ -2,19 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Badge, Button, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { formatNumber } from '../scripts.js';
 
 const MyNavbar = () => {
     const total = 25000;
     const token = true;
 
-    /*https://www.w3schools.com/jsref/jsref_tolocalestring_number.asp*/
-    const totalFormateado = total.toLocaleString('es-CL', {
-        style: 'currency',
-        currency: 'CLP',
-        minimumFractionDigits: 0,
-    });
+    // /*https://www.w3schools.com/jsref/jsref_tolocalestring_number.asp*/
+    // const totalFormateado = total.toLocaleString('es-CL', {
+    //     style: 'currency',
+    //     currency: 'CLP',
+    //     minimumFractionDigits: 0,
+    // });
 
     // Cargar el tema guardado en localStorage o usar el tema claro por defecto
+    // aun no :)
     const [isDarkMode, setIsDarkMode] = useState(() => {
         const savedTheme = localStorage.getItem('theme');
         return savedTheme ? savedTheme === 'dark' : false;
@@ -58,7 +60,7 @@ const MyNavbar = () => {
 
                 </div>
                 <div className="text-end">
-                    <Button variant="success" style={{ margin: '0 5px' }}><a className="nav-link" href="#">🛒 Total: {totalFormateado}</a></Button>
+                    <Button variant="success" style={{ margin: '0 5px' }}><a className="nav-link" href="#">🛒 Total: {formatNumber(total)}</a></Button>
                     {/* <Button variant="secondary" style={{ margin: '0 5px' }} onClick={() => handleThemeChange(isDarkMode ? 'claro' : 'oscuro')}><a className="nav-link" href="#">  <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} /> </a></Button> */}
                 </div>
             </div>
