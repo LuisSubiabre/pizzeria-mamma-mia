@@ -1,27 +1,28 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { formatNumber } from '../scripts.js';
 
 const CardPizza = ({ name, price, image, ingredients }) => {
     //console.log(name, price, image, ingredients);
 
     return (
-        <div className="card">
-            <img src={image} className="card-img-top" alt={name} />
-            <div className="card-body">
-                <h5 className="card-title">{name}</h5>
-                <hr />
-                <p className="card-text">🍕<strong>Ingredientes: </strong>{ingredients.join(", ")}</p>
-                <hr />
-                <h4 className='text-center'>Precio: {formatNumber(price)}</h4>
+        <Card className="card-pizza">
+            <Card.Img variant="top" src={image} alt={name} />
 
+            <Card.Body>
+                <Card.Title>{name}</Card.Title>
+                <hr />
+                <Card.Text>🍽️<strong>Ingredientes: </strong>{ingredients.join(", ")}
+                    <hr />
+                    <h4 className='text-center'> Precio: {formatNumber(price)}</h4>
+                </Card.Text>
 
                 <div className="d-flex justify-content-around py-2">
                     <Button variant="outline-success">Ver más</Button>
                     <Button variant="success">Añadir 🛒</Button>
                 </div>
-            </div>
-        </div>
+            </Card.Body>
+        </Card>
     );
 };
 

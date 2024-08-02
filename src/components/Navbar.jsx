@@ -3,6 +3,9 @@ import { Badge, Button, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { formatNumber } from '../scripts.js';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 const MyNavbar = () => {
     const total = 25000;
@@ -33,7 +36,7 @@ const MyNavbar = () => {
     };
 
     return (
-        <nav className="navbar navbar-expand-lg myNavBar">
+        <Navbar className="navbar navbar-expand-lg myNavBar navbar-fixed-top">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">Pizzas de Luigi!</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,11 +63,11 @@ const MyNavbar = () => {
 
                 </div>
                 <div className="text-end">
-                    <Button variant="success" style={{ margin: '0 5px' }}><a className="nav-link" href="#">🛒 Total: {formatNumber(total)}</a></Button>
+                    <Button variant="success" style={{ margin: '0 5px' }}><a className="nav-link" href="#">🛒 Total: {formatNumber}</a></Button>
                     {/* <Button variant="secondary" style={{ margin: '0 5px' }} onClick={() => handleThemeChange(isDarkMode ? 'claro' : 'oscuro')}><a className="nav-link" href="#">  <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} /> </a></Button> */}
                 </div>
             </div>
-        </nav >
+        </Navbar >
     );
 };
 export default MyNavbar;
