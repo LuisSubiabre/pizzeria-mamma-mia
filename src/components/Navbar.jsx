@@ -63,7 +63,7 @@ const MyNavbar = () => {
 
                 </div>
                 <div className="text-end">
-                    <Button variant="success" style={{ margin: '0 5px' }}><a className="nav-link" href="#">🛒 Total: {formatNumber}</a></Button>
+                    <Button variant="success" style={{ margin: '0 5px' }}><a className="nav-link" href="#">🛒 Total: {formatNumber(total)}</a></Button>
                     {/* <Button variant="secondary" style={{ margin: '0 5px' }} onClick={() => handleThemeChange(isDarkMode ? 'claro' : 'oscuro')}><a className="nav-link" href="#">  <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} /> </a></Button> */}
                 </div>
             </div>
