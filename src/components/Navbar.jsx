@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Badge, Button, Col, Row } from "react-bootstrap";
+import { Badge, Button, Col, Row, NavDropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { formatNumber } from '../scripts.js';
@@ -9,7 +9,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 const MyNavbar = () => {
     const total = 25000;
-    const token = true;
+    const token = false;
 
     // /*https://www.w3schools.com/jsref/jsref_tolocalestring_number.asp*/
     // const totalFormateado = total.toLocaleString('es-CL', {
@@ -22,7 +22,7 @@ const MyNavbar = () => {
     // aun no :)
     const [isDarkMode, setIsDarkMode] = useState(() => {
         const savedTheme = localStorage.getItem('theme');
-        return savedTheme ? savedTheme === 'dark' : false;
+        return savedTheme ? savedTheme === 'light' : false;
     });
 
     useEffect(() => {
@@ -36,37 +36,21 @@ const MyNavbar = () => {
     };
 
     return (
-        <Navbar className="navbar navbar-expand-lg myNavBar navbar-fixed-top">
-            <div className="container-fluid">
-                <a className="navbar-brand" href="#">Pizzas de Luigi!</a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <Button variant='ligth'>🍕 Home</Button>
-                        </li>
-
-                        <li className="nav-item">
-                            <Button variant='ligth'> {token ? '🔓 Profile' : '🔒 Register'}</Button>
-                        </li>
-
-                        <li className="nav-item">
-                            <Button variant='ligth'> {token ? '🔐 Logout' : '🔐 Login'}</Button>
-                        </li>
-                        <li>
-
-                        </li>
-
-                    </ul>
-
-                </div>
-                <div className="text-end">
-                    <Button variant="success" style={{ margin: '0 5px' }}><a className="nav-link" href="#">🛒 Total: {formatNumber(total)}</a></Button>
-                    {/* <Button variant="secondary" style={{ margin: '0 5px' }} onClick={() => handleThemeChange(isDarkMode ? 'claro' : 'oscuro')}><a className="nav-link" href="#">  <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} /> </a></Button> */}
-                </div>
-            </div>
+        <Navbar expand="lg" className="bg-body-tertiary footer">
+            <Container>
+                <Navbar.Brand href="#">Pizzas de Luigi!</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <Nav.Link href="#"><Button variant='ligth'>🍕 Home</Button></Nav.Link>
+                        <Nav.Link href="#">  <Button variant='ligth'> {token ? '🔓 Profile' : '🔒 Register'}</Button></Nav.Link>
+                        <Nav.Link href="#"><Button variant='ligth'> {token ? '🔐 Logout' : '🔐 Login'}</Button></Nav.Link>
+                    </Nav>
+                    <Nav>
+                        <Nav.Link href="#"><Button variant="success" style={{ margin: '0 5px' }}>🛒 Total: {formatNumber(total)}</Button></Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
         </Navbar >
     );
 };
