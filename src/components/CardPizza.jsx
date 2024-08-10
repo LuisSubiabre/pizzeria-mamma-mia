@@ -14,6 +14,7 @@ const CardPizza = ({ name, price, image, ingredients }) => {
     );
 
     return (
+
         <Card className="card-pizza mt-4">
             <Card.Img variant="top" src={image} alt={name} />
 

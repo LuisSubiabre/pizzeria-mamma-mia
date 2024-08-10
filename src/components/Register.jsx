@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import Image from 'react-bootstrap/Image';
+import imgRegister from '../assets/images/register.png';
+import Figure from 'react-bootstrap/Figure';
+
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -8,9 +14,48 @@ const Register = () => {
     const [passwordError, setPasswordError] = useState('');
     const [PasswordConfirmationError, setPasswordConfirmationError] = useState('');
 
+    const showOk = () => {
+        withReactContent(Swal).fire({
+            icon: 'success',
+            title: 'Registro existoso',
+            html: `El usuario ${email} ha sido registrado correctamente. En un futuro serás redirigido a la página de tu perfíl.`,
+        })
+    }
+    const showSwal = () => {
+        withReactContent(Swal).fire({
+            icon: 'error',
+            title: 'Oops...',
+            html: `Faltan campos por completar.`,
+        })
+    }
+
+    const showPassword = () => {
+        withReactContent(Swal).fire({
+            icon: 'error',
+            title: 'Oops...',
+            html: `Al parecer el password no cumple los requisitos.`,
+        })
+    }
+
     const validarFormulario = (e) => {
         e.preventDefault();
         console.log(email, password, confirmPassword);
+        if (email.trim() === '' || password.trim() === '' || confirmPassword.trim() === '') {
+            showSwal()
+            return
+        }
+        if (password.length < 6 || password !== confirmPassword) {
+            showPassword()
+            return
+        }
+        else {
+            showOk()
+            setEmail('')
+            setPassword('');
+            setConfirmPassword('');
+            e.target.reset();
+            return
+        }
     }
 
     const handlePasswordChange = (e) => {
@@ -30,7 +75,6 @@ const Register = () => {
         }
     }
 
-
     const handlePasswordConfirmation = (e) => {
         const value = e.target.value;
         setConfirmPassword(value);
@@ -44,28 +88,38 @@ const Register = () => {
 
 
     return (
-        <Container className="my-4">
+        <Container >
+
+            <Figure className="my-4" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Figure.Image
+                    width={671}
+                    height={180}
+                    alt="Registro de usuario"
+                    src={imgRegister}
+
+                />
+            </Figure>
+
             <h4>Registrate y sé parte de Luigi's Family</h4>
             <Form onSubmit={validarFormulario}>
                 <Form.Group controlId="formEmail">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Enter email" />
+                    <Form.Control type="email" name='email' onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu email" />
                 </Form.Group>
 
                 <Form.Group controlId="formPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" onChange={handlePasswordChange} placeholder="Enter password" />
+                    <Form.Label>Contraseña</Form.Label>
+                    <Form.Control type="password" name='password' onChange={handlePasswordChange} placeholder="Ingresa contraseña" />
                     {passwordError && <Form.Text className="text-danger">{passwordError}</Form.Text>}
                 </Form.Group>
 
                 <Form.Group controlId="formConfirmPassword">
-                    <Form.Label>Confirmar Password</Form.Label>
-                    <Form.Control type="password" onChange={handlePasswordConfirmation} placeholder="Confirm password" />
+                    <Form.Label>Confirmar Contraseña</Form.Label>
+                    <Form.Control type="password" name='passwordConfirm' onChange={handlePasswordConfirmation} placeholder="Repite tu contraseña" />
                     {PasswordConfirmationError && <Form.Text className="text-danger">{PasswordConfirmationError}</Form.Text>}
                 </Form.Group>
-
-                <Button variant="primary" type="submit">
-                    Register
+                <Button className="mt-4" variant="primary" type="submit">
+                    Registrarse
                 </Button>
             </Form>
         </Container>
