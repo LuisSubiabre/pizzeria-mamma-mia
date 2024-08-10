@@ -3,6 +3,7 @@ import MyNavbar from "./components/Navbar";
 import Home from './components/Home';
 import Footer from './components/Footer';
 import './style.css';
+import Register from './components/Register';
 
 
 
@@ -11,7 +12,8 @@ function App() {
   return (
     <>
       <MyNavbar />
-      <Home />
+      {/* <Home /> */}
+      <Register />
       <Footer />
 
     </>
