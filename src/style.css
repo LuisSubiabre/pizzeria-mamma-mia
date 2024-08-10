@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Whisper&display=swap');
+
+.titulo {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.5em;
+    font-weight: 400;
+    font-style: italic;
+    padding-top: 12px;
+}
+
+h1 {
+    font-family: 'Crimson Text', serif;
+    font-size: 2em;
+    font-weight: 700;
+    font-style: italic;
+}
+
 .myNavBar {
     -webkit-box-shadow: 0px 10px 5px 8px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 10px 5px 8px rgba(0, 0, 0, 0.75);
