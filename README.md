@@ -1,8 +1,13 @@
-# React + Vite
+# Description:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the main repository for the React App project
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **main Branch**: principal branch where milestone branches are merged
+- hito1: base app
+  - react boostrap
+  - fortawesome
+- hito2: login and register component
+  - SweetAlert2
+  - Motion Framer
+- hito3: coming soon
