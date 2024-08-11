@@ -1,8 +1,8 @@
 import React from 'react';
-import bgImagen from '../assets/images/header2.png';
+import bgImagen from '../assets/images/header3.png';
 import PizzaLogo from '../assets/pizza-logo.svg';
 import { motion } from "framer-motion"
-
+import { Button } from 'react-bootstrap';
 export const Header = () => {
     return (
         <>
@@ -16,17 +16,7 @@ export const Header = () => {
                                 borderRadius: ["20%", "20%", "50%", "50%", "20%"],
                             }} src={PizzaLogo} alt="Pizza Logo" height="64px" width="64px" /><h1 className="mb-3" >Pizzas de Lugi!</h1>
                             <h4 className="mb-3">¡El verdadero sabor de Italia!</h4>
-                            <motion.a whileHover={{ scale: 1.1, backgroundColor: '#3498db' }}
-                                whileTap={{ scale: 0.9 }}
-                                style={{
-                                    padding: '10px 20px',
-                                    fontSize: '16px',
-                                    cursor: 'pointer',
-                                    border: 'none',
-                                    borderRadius: '5px',
-                                    backgroundColor: '#2980b9',
-                                    color: 'white',
-                                }} data-mdb-ripple-init className="btn btn-outline-light btn-lg" href="#!" role="button">Mira nuestra carta</motion.a>
+                            <Button variant="success">Mira nuesta carta!</Button>
                         </div>
                     </div>
                 </div>

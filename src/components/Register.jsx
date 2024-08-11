@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import Image from 'react-bootstrap/Image';
 import imgRegister from '../assets/images/register.png';
 import Figure from 'react-bootstrap/Figure';
-
+import { motion } from 'framer-motion';
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -88,8 +87,9 @@ const Register = () => {
 
 
     return (
-        <Container >
 
+
+        <Container >
             <Figure className="my-4" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Figure.Image
                     width={671}
@@ -99,30 +99,38 @@ const Register = () => {
 
                 />
             </Figure>
+            <motion.div initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }} className="formulario">
+                <h4 className='text-center'>Registrate y sé parte de Luigi's Family</h4>
+                <Form onSubmit={validarFormulario}>
+                    <Form.Group controlId="formEmail" className='mt-4'>
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type="email" name='email' onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu email" />
+                    </Form.Group>
 
-            <h4>Registrate y sé parte de Luigi's Family</h4>
-            <Form onSubmit={validarFormulario}>
-                <Form.Group controlId="formEmail">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" name='email' onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu email" />
-                </Form.Group>
+                    <Form.Group controlId="formPassword" className='mt-4'>
+                        <Form.Label>Contraseña</Form.Label>
+                        <Form.Control type="password" name='password' onChange={handlePasswordChange} placeholder="Ingresa contraseña" />
+                        {passwordError && <Form.Text className="text-danger">{passwordError}</Form.Text>}
+                    </Form.Group>
 
-                <Form.Group controlId="formPassword">
-                    <Form.Label>Contraseña</Form.Label>
-                    <Form.Control type="password" name='password' onChange={handlePasswordChange} placeholder="Ingresa contraseña" />
-                    {passwordError && <Form.Text className="text-danger">{passwordError}</Form.Text>}
-                </Form.Group>
-
-                <Form.Group controlId="formConfirmPassword">
-                    <Form.Label>Confirmar Contraseña</Form.Label>
-                    <Form.Control type="password" name='passwordConfirm' onChange={handlePasswordConfirmation} placeholder="Repite tu contraseña" />
-                    {PasswordConfirmationError && <Form.Text className="text-danger">{PasswordConfirmationError}</Form.Text>}
-                </Form.Group>
-                <Button className="mt-4" variant="primary" type="submit">
-                    Registrarse
-                </Button>
-            </Form>
+                    <Form.Group controlId="formConfirmPassword" className='mt-4'>
+                        <Form.Label>Confirmar Contraseña</Form.Label>
+                        <Form.Control type="password" name='passwordConfirm' onChange={handlePasswordConfirmation} placeholder="Repite tu contraseña" />
+                        {PasswordConfirmationError && <Form.Text className="text-danger">{PasswordConfirmationError}</Form.Text>}
+                    </Form.Group>
+                    <Container className="mt-4 d-flex flex-column d-flex justify-content-center ">
+                        <Button className="mt-4 log" variant="primary" type="submit">
+                            Registrarse
+                        </Button>
+                        <p className='text-center mt-2'>¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
+                    </Container>
+                </Form>
+            </motion.div >
         </Container>
+
+
     );
 };
 

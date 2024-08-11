@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Footer from './components/Footer';
 import './style.css';
 import Register from './components/Register';
+import Login from './components/Login';
 
 
 
@@ -14,6 +15,7 @@ function App() {
       <MyNavbar />
       {/* <Home /> */}
       <Register />
+      <Login />
       <Footer />
 
     </>
