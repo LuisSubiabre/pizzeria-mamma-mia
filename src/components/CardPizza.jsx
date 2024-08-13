@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Card, ListGroup } from 'react-bootstrap';
 import { formatNumber } from '../scripts.js';
 
-const CardPizza = ({ name, price, image, ingredients }) => {
+const CardPizza = ({ name, price, image, ingredients, id }) => {
     const HorizontalLine = ({ color }) => (
         <div
             style={{
@@ -29,7 +29,7 @@ const CardPizza = ({ name, price, image, ingredients }) => {
                     <h4 className='text-center'>Precio: {formatNumber(price)}</h4>
 
                     <div className="d-flex justify-content-around py-2">
-                        <Button variant="outline-success">Ver más</Button>
+                        <a href={`/pizza/${id}`}><Button variant="outline-success">Ver más</Button></a>
                         <Button variant="success">Añadir 🛒</Button>
                     </div>
                 </ListGroup>

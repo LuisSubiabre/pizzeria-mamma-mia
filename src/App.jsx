@@ -5,17 +5,18 @@ import Footer from './components/Footer';
 import './style.css';
 import Register from './components/Register';
 import Login from './components/Login';
-
-
+import { Card } from 'react-bootstrap';
+import Cart from './components/Cart';
 
 function App() {
 
   return (
     <>
       <MyNavbar />
-      {/* <Home /> */}
-      <Register />
-      <Login />
+      <Home />
+      {/* <Register /> */}
+      {/* <Login /> */}
+      <Cart />
       <Footer />
 
     </>
