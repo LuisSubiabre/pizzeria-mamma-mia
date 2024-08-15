@@ -14,7 +14,7 @@ const MyNavbar = () => {
     const token = false;
 
     return (
-        <Navbar expand="lg" className="bg-dark" data-bs-theme="dark">
+        <Navbar expand="lg" className="bg-dark sticky-top" data-bs-theme="dark">
             <Container>
                 <Navbar.Brand href="#">
 

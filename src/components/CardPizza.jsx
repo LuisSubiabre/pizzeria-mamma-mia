@@ -12,7 +12,11 @@ const CardPizza = ({ name, price, image, ingredients, id }) => {
             }}
         />
     );
-
+    const handleAddClick = () => {
+        const pizza = { name, price, image, ingredients, id };
+        //console.log(pizza);
+        agregarAlCarrito(pizza);
+    }
     return (
 
         <Card className="card-pizza mt-4">
@@ -30,7 +34,7 @@ const CardPizza = ({ name, price, image, ingredients, id }) => {
 
                     <div className="d-flex justify-content-around py-2">
                         <a href={`/pizza/${id}`}><Button variant="outline-success">Ver más</Button></a>
-                        <Button variant="success">Añadir 🛒</Button>
+                        <Button variant="success" onClick={handleAddClick}>Añadir 🛒</Button>
                     </div>
                 </ListGroup>
             </Card.Body>
