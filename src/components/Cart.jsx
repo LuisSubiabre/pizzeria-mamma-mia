@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import { cartaPizza } from "../pizzas";
-import { Button, Container, Row, Col, Card, ListGroup } from 'react-bootstrap'
-import CardPizza from "./CardPizza";
+import { Button, Container, ListGroup, Badge, Image } from 'react-bootstrap'
 import { formatNumber } from '../scripts.js';
-
-
 
 const Cart = () => {
     const [listaPizzas, setListaPizzas] = useState(cartaPizza)
@@ -46,9 +43,6 @@ const Cart = () => {
 
             }
             return prevState
-
-            /*Si el producto es 0 se quita del carrito */
-
         })
     }
 
@@ -66,46 +60,45 @@ const Cart = () => {
         <>
             <h2>Carrito</h2>
             <Container className="my-4">
-                <Row className="mx-2">
+                <ListGroup>
                     {listaPizzas.map((element) => (
+                        <ListGroup.Item key={element.id} className="d-flex justify-content-between align-items-start">
 
-                        <Col md={4} key={element.id}>
-                            <Card className="card-pizza mt-4">
-                                <Card.Img variant="top" src={element.img} alt={element.im} />
+                            <Image width={150} thumbnail src={element.img} rounded />
+                            <div className="ms-2 me-auto d-flex flex-column">
+                                <div className="fw-bold">
+                                    {element.name}
+                                    <Badge bg="primary" pill>
+                                        {
+                                            carrito.find((x) => x.id === element.id) ? carrito.find((x) => x.id === element.id).cantidad : ''
+                                        }
+                                    </Badge>
+                                </div>
+                                <div> {formatNumber(element.price)}</div>
 
-                                <Card.Body>
-                                    <ListGroup className="list-group-flush">
-                                        <Card.Title>{element.name}</Card.Title>
-                                        <HorizontalLine color="gray" />
-                                        <Card.Text>
-                                            🍽️<strong>Ingredientes: </strong>{element.ingredients.join(", ")}
-                                        </Card.Text>
-                                        <HorizontalLine color="gray" />
-                                        <h4 className='text-center'>Precio: {formatNumber(element.price)}</h4>
+                            </div>
+                            <div className="ms-2">
+                                <Button onClick={() => removeFromCart(element)} className='mx-2'>Quitar</Button>
+                                <Button onClick={() => addToCart(element)} className='mx-2'>Agregar</Button>
+                            </div>
 
-                                        <div className="d-flex justify-content-around py-2">
-                                            <a href={`/pizza/${element.id}`}><Button variant="outline-success">Ver más</Button></a>
-                                            <Button onClick={() => removeFromCart(element)} variant="danger"> - </Button>
-                                            <Button onClick={() => addToCart(element)} variant="success"> + </Button>
-                                        </div>
-                                    </ListGroup>
-                                </Card.Body>
-                            </Card>
+                        </ListGroup.Item>
 
-
-                        </Col>
                     ))}
-                </Row>
+                </ListGroup>
             </Container>
+            <Container>
+                <h4>Total del carrito: </h4>
+                {carrito.map((element) => (
+                    <li key={element.id}>
+                        {element.name} {formatNumber(element.price)} x {element.cantidad}
+                    </li>
 
-            <h4>Total del carrito: </h4>
-            {carrito.map((element) => (
-                <li key={element.id}>
-                    {element.name} ${element.price} x {element.cantidad}
-                </li>
+                ))}
+                {total === 0 ? <p>El carrito esta vacio</p> : <div><p>TOTAL: {formatNumber(total)}</p> <Button variant='success'>Ir a pagar</Button></div>}
 
-            ))}
-            <p>TOTAL: {total}</p>
+
+            </Container>
 
         </>
     )
