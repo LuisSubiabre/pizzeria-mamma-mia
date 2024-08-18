@@ -10,4 +10,5 @@ This is the main repository for the React App project
 - hito2: login and register component
   - SweetAlert2
   - Motion Framer
-- hito3: coming soon
+- hito3: Renderización dinámica de componentes
+
