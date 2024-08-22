@@ -13,10 +13,10 @@ function App() {
   return (
     <>
       <MyNavbar />
-      {/* <Home /> */}
+      <Home />
       {/* <Register /> */}
       {/* <Login /> */}
-      <Cart />
+      {/* <Cart /> */}
       <Footer />
 
     </>
