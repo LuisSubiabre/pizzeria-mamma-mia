@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import CardPizza from './CardPizza';
+import CardPizza from '../components/CardPizza';
 import { Row, Col, Container, Alert } from "react-bootstrap";
 
 const Pizza = () => {
@@ -8,7 +8,7 @@ const Pizza = () => {
 
     const queryPizza = async () => {
         try {
-            const url = "http://localhost:5000/api/pizzas/p001";
+            const url = "https://simple-api-backend-nodejs-express-fs.onrender.com/api/pizzas/p001";
             const response = await fetch(url);
 
             if (!response.ok) { // https://dev.to/dionarodrigues/fetch-api-do-you-really-know-how-to-handle-errors-2gj0

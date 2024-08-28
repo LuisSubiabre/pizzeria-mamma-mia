@@ -1,5 +1,5 @@
-import CardPizza from "./CardPizza";
-import { Header } from "./Header";
+import CardPizza from "../components/CardPizza";
+import { Header } from "../components/Header";
 import { Row, Col, Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 //import { cartaPizza } from "../pizzas";
@@ -14,7 +14,7 @@ const Home = () => {
 
     const consultarAPI = async () => {
         try {
-            const url = "http://localhost:5000/api/pizzas";
+            const url = "https://simple-api-backend-nodejs-express-fs.onrender.com/api/pizzas";
             const reponse = await fetch(url);
             const data = await reponse.json();
             setError(false);

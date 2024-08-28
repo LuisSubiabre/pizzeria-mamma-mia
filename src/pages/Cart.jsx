@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { cartaPizza } from "../pizzas";
+import { cartaPizza } from "../pizzas.js";
 import { Button, Container, ListGroup, Badge, Image } from 'react-bootstrap'
 import { formatNumber } from '../scripts.js';
 
