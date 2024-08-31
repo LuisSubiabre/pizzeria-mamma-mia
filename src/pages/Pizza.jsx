@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 import CardPizza from '../components/CardPizza';
 import { Row, Col, Container, Alert } from "react-bootstrap";
+import { useParams } from 'react-router-dom';
 
 const Pizza = () => {
     const [pizza, setPizza] = useState(null);
     const [error, setError] = useState('');
+    const { id } = useParams();
 
     const queryPizza = async () => {
         try {
-            const url = "https://simple-api-backend-nodejs-express-fs.onrender.com/api/pizzas/p001";
+            const url = `http://localhost:5000/api/pizzas/${id}`;
             const response = await fetch(url);
 
-            if (!response.ok) { // https://dev.to/dionarodrigues/fetch-api-do-you-really-know-how-to-handle-errors-2gj0
+            if (!response.ok) {
                 throw new Error(response.status);
             }
 
@@ -27,11 +29,11 @@ const Pizza = () => {
     }, []);
 
     if (error) {
-        return <Alert variant='danger'>{error}</Alert>; // Muestra el mensaje de error si la respuesta del endpoint no es exitosa (200)
+        return <Alert variant='danger'>{error}</Alert>;
     }
 
     if (!pizza) {
-        return <div>Cargando...</div>; // Muestra un mensaje de carga mientras se obtiene la pizza
+        return <div>Cargando...</div>;
     }
 
     return (

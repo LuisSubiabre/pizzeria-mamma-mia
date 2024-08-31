@@ -13,8 +13,8 @@ const NotFound = () => {
 
         </h2>
         <h3 className="h2 mb-2">Oops!</h3>
-        <p className="mb-5">Lla página que buscas no fue encontrada.</p>
-        <Link className="btn bsb-btn-5xl btn-dark rounded-pill px-5 fs-6 m-0" to="/" role="button">Regresar al inicio</Link>
+        <p className="mb-5">La página que buscas no fue encontrada.</p>
+        <Link className="btn bsb-btn-5xl btn-dark rounded-pill px-5 fs-6 m-0" to="/" role="button">Regresar al Home</Link>
       </div>
     </div>
   )

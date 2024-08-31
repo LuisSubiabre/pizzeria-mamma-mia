@@ -12,12 +12,12 @@ import { Link } from 'react-router-dom';
 
 const MyNavbar = () => {
     const total = 25000;
-    const token = true;
+    const token = false;
 
     return (
         <Navbar expand="lg" className="bg-dark sticky-top" data-bs-theme="dark">
             <Container>
-                <Navbar.Brand href="#">
+                <Navbar.Brand as={Link} to="/">
 
                     <p className='titulo'>  <img src={PizzaLogo} alt="Pizza Logo" height="32px" width="32px" /><Titulo /> </p>
                 </Navbar.Brand>
