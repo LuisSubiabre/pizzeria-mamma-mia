@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/pizza/:id",
+            "destination": "/index.html"
+        }
+    ]
+}
