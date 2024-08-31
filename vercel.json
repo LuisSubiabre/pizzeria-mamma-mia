@@ -3,6 +3,10 @@
         {
             "source": "/pizza/:id",
             "destination": "/index.html"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
         }
     ]
 }
