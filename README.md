@@ -15,3 +15,4 @@ This is the main repository for the React App project
   - Endpoint: https://simple-api-backend-nodejs-express-fs.onrender.com/api/pizzas
 - hito5: React Router
   - React Router
+- hito6: context

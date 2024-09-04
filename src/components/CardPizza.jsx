@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Card, ListGroup } from 'react-bootstrap';
 import { formatNumber } from '../scripts.js';
-
+import { Link } from 'react-router-dom';
 const CardPizza = ({ name, desc, price, image, ingredients, id, verMas = true }) => {
     const HorizontalLine = ({ color }) => (
         <div
@@ -36,7 +36,7 @@ const CardPizza = ({ name, desc, price, image, ingredients, id, verMas = true })
                     <h4 className='text-center'>Precio: {formatNumber(price)}</h4>
 
                     <div className="d-flex justify-content-around py-2">
-                        {verMas ? <a href={`/pizza/${id}`}><Button variant="outline-success">Ver más</Button></a> : ''}
+                        {verMas ? <Link to={`/pizza/${id}`}><Button variant="outline-success">Ver más</Button></Link> : ''}
                         <Button variant="success" onClick={handleAddClick}>Añadir 🛒</Button>
                     </div>
                 </ListGroup>

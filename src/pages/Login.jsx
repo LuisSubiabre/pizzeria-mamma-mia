@@ -5,6 +5,7 @@ import withReactContent from 'sweetalert2-react-content'
 import imgRegister from '../assets/images/login.png';
 import Figure from 'react-bootstrap/Figure';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -88,7 +89,7 @@ const Login = () => {
                         <Button className="mt-4 log" variant="primary" type="submit">
                             Acceder
                         </Button>
-                        <p className='text-center mt-2'>¿No tienes una cuenta? <a href="/login">Regístrate</a></p>
+                        <p className='text-center mt-2'>¿No tienes una cuenta? <Link to="/register">Regístrate</Link></p>
                     </Container>
                 </Form>
             </motion.div >
