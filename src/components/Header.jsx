@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap';
 export const Header = () => {
     return (
         <>
-            <div className="p-5 text-center bg-image" style={{ backgroundImage: `url(${bgImagen})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div className="p-5 text-center bg-image parallax" style={{ backgroundImage: `url(${bgImagen})` }}>
                 <div>
                     <div className="d-flex justify-content-center align-items-center h-100">
                         <div className="text-white">

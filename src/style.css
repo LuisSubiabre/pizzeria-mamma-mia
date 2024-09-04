@@ -86,3 +86,12 @@ h1 {
 .red {
     color: #d5261f;
 }
+
+.parallax {
+    height: 30vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
