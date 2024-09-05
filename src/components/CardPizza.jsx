@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CartContext } from '../context/CartContext.jsx';
 import { Button, Card, ListGroup } from 'react-bootstrap';
 import { formatNumber } from '../scripts.js';
 import { Link } from 'react-router-dom';
+
 const CardPizza = ({ name, desc, price, image, ingredients, id, verMas = true }) => {
+    const { addToCart, count, setCount } = useContext(CartContext);
     const HorizontalLine = ({ color }) => (
         <div
             style={{
@@ -14,8 +17,8 @@ const CardPizza = ({ name, desc, price, image, ingredients, id, verMas = true })
     );
     const handleAddClick = () => {
         const pizza = { name, price, image, ingredients, id };
-        //console.log(pizza);
-        agregarAlCarrito(pizza);
+        addToCart(pizza);
+
     }
     return (
 
@@ -37,6 +40,7 @@ const CardPizza = ({ name, desc, price, image, ingredients, id, verMas = true })
 
                     <div className="d-flex justify-content-around py-2">
                         {verMas ? <Link to={`/pizza/${id}`}><Button variant="outline-success">Ver más</Button></Link> : ''}
+                        {/* <Button variant="success" onClick={handleAddClick}>Añadir 🛒</Button> */}
                         <Button variant="success" onClick={handleAddClick}>Añadir 🛒</Button>
                     </div>
                 </ListGroup>

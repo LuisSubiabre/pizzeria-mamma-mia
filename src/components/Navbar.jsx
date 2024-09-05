@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { CartContext } from '../context/CartContext.jsx';
 import { Badge, Button, Col, Row, NavDropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { formatNumber } from '../scripts.js';
@@ -9,9 +10,9 @@ import PizzaLogo from '../assets/pizza-logo.svg';
 import Titulo from './Titulo.jsx';
 import { Link } from 'react-router-dom';
 
-
 const MyNavbar = () => {
-    const total = 25000;
+    const { count } = useContext(CartContext);
+    const total = count;
     const token = false;
 
     return (
