@@ -9,11 +9,18 @@ import Navbar from 'react-bootstrap/Navbar';
 import PizzaLogo from '../assets/pizza-logo.svg';
 import Titulo from './Titulo.jsx';
 import { Link } from 'react-router-dom';
+import { motion, useAnimate } from "framer-motion"
 
 const MyNavbar = () => {
     const { count } = useContext(CartContext);
+    const [scope, animate] = useAnimate()
+
     const total = count;
     const token = false;
+
+    useEffect(() => {
+        animate(scope.current, { scale: [1, 1.2, 1] }, { duration: 0.5 });
+    }, [total]);
 
     return (
         <Navbar expand="lg" className="bg-dark sticky-top" data-bs-theme="dark">
@@ -41,14 +48,16 @@ const MyNavbar = () => {
                     </Nav>
                     <Nav>
                         <Nav.Link as={Link} to="/cart">
-                            <Button variant="success" style={{ margin: '0 5px' }}>
-                                🛒 Total: {formatNumber(total)}
-                            </Button>
+                            <motion.div ref={scope} >
+                                <Button variant="success" style={{ margin: '0 5px' }}>
+                                    🛒 Total: {formatNumber(total)}
+                                </Button>
+                            </motion.div>
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
-        </Navbar>
+        </Navbar >
     );
 };
 export default MyNavbar;

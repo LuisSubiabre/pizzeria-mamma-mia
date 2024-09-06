@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { CartContext } from '../context/CartContext.jsx';
-import { Button, Card, ListGroup } from 'react-bootstrap';
+import { Button, Card, ListGroup, Alert } from 'react-bootstrap';
 import { formatNumber } from '../scripts.js';
 import { Link } from 'react-router-dom';
 
 const CardPizza = ({ name, desc, price, image, ingredients, id, verMas = true }) => {
-    const { addToCart, count, setCount } = useContext(CartContext);
+    const { addToCart } = useContext(CartContext);
+    const [showAlert, setShowAlert] = useState(false); // Estado local para manejar la alerta
+
     const HorizontalLine = ({ color }) => (
         <div
             style={{
@@ -15,13 +17,19 @@ const CardPizza = ({ name, desc, price, image, ingredients, id, verMas = true })
             }}
         />
     );
+
     const handleAddClick = () => {
         const pizza = { name, price, image, ingredients, id };
         addToCart(pizza);
+        setShowAlert(true); // Mostrar la alerta al agregar la pizza
 
-    }
+        // Ocultar la alerta después de 3 segundos
+        setTimeout(() => {
+            setShowAlert(false);
+        }, 3000);
+    };
+
     return (
-
         <Card className="card-pizza mt-4">
             <Card.Img variant="top" src={image} alt={name} />
 
@@ -29,9 +37,7 @@ const CardPizza = ({ name, desc, price, image, ingredients, id, verMas = true })
                 <ListGroup className="list-group-flush">
                     <Card.Title style={{ textTransform: 'uppercase' }}>{name}</Card.Title>
                     <HorizontalLine color="gray" />
-                    <Card.Text>
-                        {desc}
-                    </Card.Text>
+                    <Card.Text>{desc}</Card.Text>
                     <Card.Text>
                         🍽️<strong>Ingredientes: </strong>{ingredients.join(", ")}
                     </Card.Text>
@@ -40,9 +46,13 @@ const CardPizza = ({ name, desc, price, image, ingredients, id, verMas = true })
 
                     <div className="d-flex justify-content-around py-2">
                         {verMas ? <Link to={`/pizza/${id}`}><Button variant="outline-success">Ver más</Button></Link> : ''}
-                        {/* <Button variant="success" onClick={handleAddClick}>Añadir 🛒</Button> */}
                         <Button variant="success" onClick={handleAddClick}>Añadir 🛒</Button>
                     </div>
+                    {showAlert && (
+                        <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
+                            Producto agregado al carrito.
+                        </Alert>
+                    )}
                 </ListGroup>
             </Card.Body>
         </Card>
