@@ -18,3 +18,5 @@ This is the main repository for the React App project
 - hito6: context
 - hito7:
   - useParams 
+  - Rutas protegidas
+  - context
