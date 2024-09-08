@@ -95,3 +95,24 @@ h1 {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+
+.is-active {
+    color: #daa520;
+    text-decoration: none;
+    padding-left: 12px;
+
+
+}
+
+.no-active {
+    color: white;
+    text-decoration: none;
+    padding-left: 12px;
+
+}
+
+a:hover {
+
+    color: white;
+}

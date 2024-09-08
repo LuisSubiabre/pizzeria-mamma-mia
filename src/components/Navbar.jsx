@@ -9,7 +9,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import PizzaLogo from '../assets/pizza-logo.svg';
 import Titulo from './Titulo.jsx';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, NavLink } from 'react-router-dom';
 import { motion, useAnimate } from "framer-motion"
 import Profile from '../pages/Profile.jsx';
 
@@ -37,19 +37,28 @@ const MyNavbar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/"><Button variant='ligth'>🍕 Home</Button></Nav.Link>
 
-                        <Nav.Link as={Link} to={token ? '/profile' : '/register'}>
-                            <Button variant='ligth'>
-                                {token ? '🔓 Profile' : '🔒 Register'}
-                            </Button>
-                        </Nav.Link>
+                        <NavLink
+                            as={Link} to="/"
+                            className={({ isActive }) => (isActive ? "is-active" : "no-active")} >
+                            🍕 Home
+                        </NavLink>
 
-                        <Nav.Link as={Link} to={token ? '/logout' : '/login'}>
-                            <Button variant='ligth' onClick={token ? logout : undefined}>
-                                {token ? '🔐 Logout' : '🔐 Login'}
-                            </Button>
-                        </Nav.Link>
+                        <NavLink
+                            as={Link}
+                            to={token ? '/profile' : '/register'}
+                            className={({ isActive }) => (isActive ? "is-active" : "no-active")}>
+                            {token ? '🔓 Profile' : '🔒 Register'}
+                        </NavLink>
+
+                        <NavLink
+                            onClick={token ? logout : undefined}
+                            as={Link}
+                            to={!token ? '/login' : '/login'}
+                            className={({ isActive }) => (isActive ? "is-active" : "no-active")}>
+                            {token ? '🔐 Logout' : '🔐 Login'}
+                        </NavLink>
+
                     </Nav>
                     <Nav>
                         <Nav.Link as={Link} to="/cart">
