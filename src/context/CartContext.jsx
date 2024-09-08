@@ -1,12 +1,10 @@
 import { createContext, useEffect, useState } from "react";
 
-
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
     const [count, setCount] = useState(0);
     const [cart, setCart] = useState([]);
-
 
     useEffect(() => {
         calcularTotal();
@@ -25,8 +23,6 @@ const CartProvider = ({ children }) => {
 
 
     };
-
-
 
     const removeFromCart = (element) => {
         setCart((prevState) => {

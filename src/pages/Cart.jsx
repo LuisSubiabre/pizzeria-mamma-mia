@@ -3,13 +3,16 @@ import { cartaPizza } from "../pizzas.js";
 import { Button, Container, ListGroup, Badge, Image } from 'react-bootstrap'
 import { formatNumber } from '../scripts.js';
 import { CartContext } from '../context/CartContext.jsx';
+import { UserContext } from '../context/UserContext.jsx';
+import Nav from 'react-bootstrap/Nav';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const { cart, addToCart, removeFromCart, count } = useContext(CartContext);
-
+    const { token } = useContext(UserContext);
     return (
         <>
-            <h2>Carrito</h2>
+
 
             <Container>
                 <h4>Total del carrito: </h4>
@@ -32,7 +35,13 @@ const Cart = () => {
 
                     ))}
                 </ListGroup>
-                {count === 0 ? <p>El carrito esta vacio</p> : <div><p>TOTAL: {formatNumber(count)}</p> <Button variant='success'>Ir a pagar</Button></div>}
+                {count === 0 ? <p>El carrito esta vacio</p> : <div>
+
+                    <p>TOTAL: {formatNumber(count)}</p>
+                    {token ?
+                        <Button variant='success'>Ir a pagar</Button> :
+                        <Nav.Link as={Link} to="/login"> <Button variant='danger'>Inicia sesion para pagar</Button></Nav.Link>}
+                </div>}
 
 
             </Container>

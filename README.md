@@ -16,3 +16,5 @@ This is the main repository for the React App project
 - hito5: React Router
   - React Router
 - hito6: context
+- hito7:
+  - useParams 

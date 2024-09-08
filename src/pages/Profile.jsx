@@ -2,9 +2,9 @@ import React from 'react'
 import { Container, Row, Figure, Button } from 'react-bootstrap'
 import profileImg from '../assets/images/profile.png'
 import { motion } from 'framer-motion';
+import { useContext } from 'react';
 
-
-export const Profile = () => {
+const Profile = () => {
     return (
         <Container >
             <Figure className="my-4" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -30,3 +30,4 @@ export const Profile = () => {
         </Container>
     )
 }
+export default Profile;

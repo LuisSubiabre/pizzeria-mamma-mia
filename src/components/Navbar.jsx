@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { CartContext } from '../context/CartContext.jsx';
+import { UserContext } from '../context/UserContext.jsx';
 import { Badge, Button, Col, Row, NavDropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { formatNumber } from '../scripts.js';
@@ -8,15 +9,18 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import PizzaLogo from '../assets/pizza-logo.svg';
 import Titulo from './Titulo.jsx';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { motion, useAnimate } from "framer-motion"
+import Profile from '../pages/Profile.jsx';
+
 
 const MyNavbar = () => {
     const { count } = useContext(CartContext);
+    const { token, logout } = useContext(UserContext);
     const [scope, animate] = useAnimate()
 
     const total = count;
-    const token = false;
+
 
     useEffect(() => {
         animate(scope.current, { scale: [1, 1.2, 1] }, { duration: 0.5 });
@@ -25,6 +29,7 @@ const MyNavbar = () => {
     return (
         <Navbar expand="lg" className="bg-dark sticky-top" data-bs-theme="dark">
             <Container>
+
                 <Navbar.Brand as={Link} to="/">
 
                     <p className='titulo'>  <img src={PizzaLogo} alt="Pizza Logo" height="32px" width="32px" /><Titulo /> </p>
@@ -41,7 +46,7 @@ const MyNavbar = () => {
                         </Nav.Link>
 
                         <Nav.Link as={Link} to={token ? '/logout' : '/login'}>
-                            <Button variant='ligth'>
+                            <Button variant='ligth' onClick={token ? logout : undefined}>
                                 {token ? '🔐 Logout' : '🔐 Login'}
                             </Button>
                         </Nav.Link>
