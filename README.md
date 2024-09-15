@@ -20,3 +20,5 @@ This is the main repository for the React App project
   - useParams 
   - Rutas protegidas
   - context
+- hito8:
+  - JWT

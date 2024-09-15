@@ -9,8 +9,8 @@ const UserProvider = ({ children }) => {
     const [token, setToken] = useState(true);
     const navigate = useNavigate();
 
-    const logout = () => {
 
+    const logout = () => {
         setToken(false);
         withReactContent(Swal).fire({
             icon: 'info',
@@ -20,14 +20,10 @@ const UserProvider = ({ children }) => {
             navigate('/');
 
         });
-
-
     };
 
-
-
     return (
-        <UserContext.Provider value={{ token, logout }}>
+        <UserContext.Provider value={{ token, logout, setToken }}>
             {children}
         </UserContext.Provider >
 

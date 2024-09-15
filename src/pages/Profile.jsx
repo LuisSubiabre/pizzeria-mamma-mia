@@ -3,8 +3,11 @@ import { Container, Row, Figure, Button } from 'react-bootstrap'
 import profileImg from '../assets/images/profile.png'
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
+
 
 const Profile = () => {
+    const { logout } = useContext(UserContext);
     return (
         <Container >
             <Figure className="my-4" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -24,7 +27,7 @@ const Profile = () => {
 
                 <h4 className='text-center'>Bienvenido: usuario@luigi.com</h4>
 
-                <Button variant="warning" className="w-100 my-2" >Cerrar sesión</Button>
+                <Button variant="warning" className="w-100 my-2" onClick={logout}>Cerrar sesión</Button>
 
             </motion.div>
         </Container>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -6,43 +6,49 @@ import imgRegister from '../assets/images/login.png';
 import Figure from 'react-bootstrap/Figure';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    const { token, setToken } = useContext(UserContext);
 
-    const validarFormulario = (e) => {
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(email, password);
-        if (email.trim() === '' || password.trim() === '') {
-            withReactContent(Swal).fire({
-                icon: 'error',
-                title: 'Oops...',
-                html: `Faltan campos por completar.`,
-            })
-            return
+        const response = await fetch("http://localhost:5000/api/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email,
+                password,
+            }),
+        });
+        const data = await response.json();
+        data?.error ? alerMensaje('error', data?.error) : alerMensaje('success', 'Logeado correctamente');
+        localStorage.setItem("token", data.token);
+        console.log(data.token);
+        setToken(true);
+        if (data.token) {
+            navigate('/profile');
         }
-        if (password.length < 6) {
-            withReactContent(Swal).fire({
-                icon: 'error',
-                title: 'Oops...',
-                html: `El password debe tener al menos 6 caracteres`,
-            })
-            return
-        }
-        else {
-            withReactContent(Swal).fire({
-                icon: 'success',
-                title: 'Inicio de sesión exitoso',
-                html: `El usuario ${email} ha iniciado sesión correctamente. En un futuro serás redirigido a la página de tu perfíl.`,
-            })
-            setEmail('')
-            setPassword('');
-            e.target.reset();
-            return
-        }
+
+    };
+
+    const alerMensaje = (icon, msg) => {
+
+        withReactContent(Swal).fire({
+            icon: icon,
+            title: msg,
+        })
+
     }
+
 
     const handlePasswordChange = (e) => {
         const value = e.target.value;
@@ -72,7 +78,7 @@ const Login = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }} className="formulario">
                 <h4 className='text-center'>Inicia tu sesión de Luigi's Family</h4>
-                <Form onSubmit={validarFormulario}>
+                <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="formEmailLogin" className='mt-4'>
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="email" name='emailLogin' onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu email" />
