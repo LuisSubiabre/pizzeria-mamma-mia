@@ -13,29 +13,29 @@ import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
 import CartProvider from './context/CartContext';
 import { UserContext } from "./context/UserContext";
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 function App() {
-  const { token } = useContext(UserContext);
-  console.log(token)
+  const { auth, profile } = useContext(UserContext);
+
+  // /* verifica si el usuario esta logueado para cambiar el estado de auth y manejar las rutas*/
+  // useEffect(() => {
+  //   profile();
+  // }, []);
 
   return (
     <>
       <CartProvider>
-
-
         <MyNavbar />
-
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/register" element={!token ? <Register /> : <Profile />} />
-          <Route path="/login" element={!token ? <Login /> : <Profile />} />
+          <Route path="/register" element={!auth ? <Register /> : <Profile />} />
+          <Route path="/login" element={!auth ? <Login /> : <Profile />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/pizza/:id" element={<Pizza />} />
-          <Route path="/profile" element={token ? <Profile /> : <Login />} />
+          <Route path="/profile" element={auth ? <Profile /> : <Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-
       </CartProvider>
       <Footer />
 

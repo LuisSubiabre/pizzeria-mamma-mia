@@ -16,7 +16,7 @@ import Profile from '../pages/Profile.jsx';
 
 const MyNavbar = () => {
     const { count } = useContext(CartContext);
-    const { token, logout } = useContext(UserContext);
+    const { auth, logout } = useContext(UserContext);
     const [scope, animate] = useAnimate()
 
     const total = count;
@@ -46,17 +46,17 @@ const MyNavbar = () => {
 
                         <NavLink
                             as={Link}
-                            to={token ? '/profile' : '/register'}
+                            to={auth ? '/profile' : '/register'}
                             className={({ isActive }) => (isActive ? "is-active" : "no-active")}>
-                            {token ? '🔓 Profile' : '🔒 Register'}
+                            {auth ? '🔓 Profile' : '🔒 Register'}
                         </NavLink>
 
                         <NavLink
-                            onClick={token ? logout : undefined}
+                            onClick={auth ? logout : undefined}
                             as={Link}
-                            to={!token ? '/login' : '/login'}
+                            to={auth ? '/login' : '/login'}
                             className={({ isActive }) => (isActive ? "is-active" : "no-active")}>
-                            {token ? '🔐 Logout' : '🔐 Login'}
+                            {auth ? '😥 Logout' : '🔐 Login'}
                         </NavLink>
 
                     </Nav>
