@@ -13,34 +13,30 @@ import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
 import CartProvider from './context/CartContext';
 import { UserContext } from "./context/UserContext";
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 function App() {
-  const { auth, profile } = useContext(UserContext);
-
-  // /* verifica si el usuario esta logueado para cambiar el estado de auth y manejar las rutas*/
-  // useEffect(() => {
-  //   profile();
-  // }, []);
+  const { auth } = useContext(UserContext);
 
   return (
-    <>
+    <div id="root">
       <CartProvider>
         <MyNavbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={!auth ? <Register /> : <Profile />} />
-          <Route path="/login" element={!auth ? <Login /> : <Profile />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/pizza/:id" element={<Pizza />} />
-          <Route path="/profile" element={auth ? <Profile /> : <Login />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div className="main-content"> {/* Contenedor para el contenido principal */}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={!auth ? <Register /> : <Profile />} />
+            <Route path="/login" element={!auth ? <Login /> : <Profile />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/pizza/:id" element={<Pizza />} />
+            <Route path="/profile" element={auth ? <Profile /> : <Login />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
+        <Footer />
       </CartProvider>
-      <Footer />
-
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
